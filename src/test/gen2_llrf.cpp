@@ -56,7 +56,7 @@ int main(int argc, char **argv)
 
     if (yamlDoc.empty())
     {
-        std::cout << "Must specify a Yaml top path." << std::endl;
+        std::cout << "Must specify a YAML top path." << std::endl;
         exit(1);
     }
 
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 
     if ( defaultsDoc.empty() )
     {
-        std::cout << "Not defaults file was specified. Omiting..." << std::endl;
+        std::cout << "Not defaults file was specified. Omitting..." << std::endl;
     }
     else
     {
@@ -87,8 +87,8 @@ int main(int argc, char **argv)
     Gen2Llrf llrf { IGen2Llrf::create(root) };
     std::cout << std::endl;
 
-    // Initilize it
-    std::cout << "Initilizating the Gen2Llrf object..." << std::endl;
+    // Initialize it
+    std::cout << "Initializing the Gen2Llrf object..." << std::endl;
     bool success;
     if ( success =  llrf->init() )
     {
@@ -96,15 +96,15 @@ int main(int argc, char **argv)
     }
     std::cout << std::endl;
 
-    // Check if the initilization succeed
+    // Check if the initialization succeed
     std::cout << std::endl;
     if ( !success )
     {
-        std::cerr << "Initilization failed!" << std::endl;
+        std::cerr << "Initialization failed!" << std::endl;
         return 1;
     }
 
-    std::cout << "Initilization succeed!" << std::endl;
+    std::cout << "Initialization succeed!" << std::endl;
     std::cout << std::endl;
 
     return 0;

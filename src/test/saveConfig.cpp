@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 
     if (yamlDoc.empty())
     {
-        std::cerr << "Must specify a Yaml top path." << std::endl;
+        std::cerr << "Must specify a YAML top path." << std::endl;
         exit(1);
     }
 

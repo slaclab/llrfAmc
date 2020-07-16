@@ -25,21 +25,21 @@ IDownConverter::IDownConverter(Path p)
 
 bool IDownConverter::init()
 {
-    log->log(LoggerLevel::Debug, "Initilizating...");
+    log->log(LoggerLevel::Debug, "Initializing...");
 
-    // Initilizaztion sequence
+    // Initialization sequence
     bool success;
     std::size_t maxRetries { 5 };
     for (std::size_t i {1}; i <= maxRetries; ++i)
     {
-        log->log(LoggerLevel::Debug, "Initilization try # " + to_string(i) + ":");
+        log->log(LoggerLevel::Debug, "Initialization try # " + to_string(i) + ":");
         log->log(LoggerLevel::Debug, "===========================");
 
         // - Power down Lmk sys ref
         lmk->pwrDwnSysRef();
         // - Reset JesdRx GTs
         jesdRx->resetGTs();
-        // - Init AMC card
+        // - Initialize AMC card
         initAmcCardCmd->execute();
         // - Clear JesdRx errors
         jesdRx->clearErrors();
@@ -52,19 +52,19 @@ bool IDownConverter::init()
 
        if ( success )
        {
-           log->log(LoggerLevel::Debug, "Initilization succeed!");
+           log->log(LoggerLevel::Debug, "Initialization succeed!");
            break;
        }
        else
        {
            if ( i == maxRetries )
            {
-                log->log(LoggerLevel::Error, "Initilization failed after " + to_string(maxRetries) + " retries. Aborting!");
+                log->log(LoggerLevel::Error, "Initialization failed after " + to_string(maxRetries) + " retries. Aborting!");
                break;
            }
            else
            {
-               log->log(LoggerLevel::Warning, "Initilization # " + to_string(i) + " failed. Retying...");
+               log->log(LoggerLevel::Warning, "Initialization # " + to_string(i) + " failed. Retying...");
            }
        }
     }

@@ -58,7 +58,7 @@ int main(int argc, char **argv)
 
     if (yamlDoc.empty())
     {
-        std::cout << "Must specify a Yaml top path." << std::endl;
+        std::cout << "Must specify a YAML top path." << std::endl;
         exit(1);
     }
 
@@ -67,7 +67,7 @@ int main(int argc, char **argv)
 
     if ( defaultsDoc.empty() )
     {
-        std::cout << "Not defaults file was specified. Omiting..." << std::endl;
+        std::cout << "Not defaults file was specified. Omitting..." << std::endl;
     }
     else
     {
@@ -89,8 +89,8 @@ int main(int argc, char **argv)
     Gen2UpConverter amc { IGen2UpConverter::create(root) };
     std::cout << std::endl;
 
-    std::cout << "Initilizating the Gen2UpConverter object..." << std::endl;
-    // Initilize it
+    std::cout << "Initializing the Gen2UpConverter object..." << std::endl;
+    // Initialize it
     bool success;
     if ( success =  amc->init() )
     {
@@ -98,7 +98,7 @@ int main(int argc, char **argv)
     }
     std::cout << std::endl;
 
-    // Check if the initializtion succeed
+    // Check if the initialization succeed
     std::cout << std::endl;
     if ( !success )
     {

@@ -40,7 +40,7 @@ IDac38J84::IDac38J84(Path p)
 
 void IDac38J84::init()
 {
-    log->log(LoggerLevel::Debug, "Initilizing...");
+    log->log(LoggerLevel::Debug, "Initializing...");
 
     enableTxReg->setVal(0ul);
     usleep(10000);
@@ -59,7 +59,7 @@ void IDac38J84::init()
     dacReg->setVal(&u32, 1, &rng);
     usleep(10000);
 
-    // Set and Reset Bit9 – VRANGE, select between high and low VCO.
+    // Set and Reset Bit 9 – VRANGE, select between high and low VCO.
     rng = 60;
     dacReg->getVal(&u32, 1, &rng);
     u32 |= 0x200;

@@ -23,16 +23,16 @@ IGen2Llrf::IGen2Llrf(Path p)
 
 bool IGen2Llrf::init() const
 {
-    log->log(LoggerLevel::Debug, "Initilizing...");
+    log->log(LoggerLevel::Debug, "Initializing...");
 
-    // Initilizaztion sequence
+    // Initialization sequence
     bool success = downConv->init();
     success &= upConv->init();
 
     if ( success )
-        log->log(LoggerLevel::Debug, "Initilization succeed!");
+        log->log(LoggerLevel::Debug, "Initialization succeed!");
     else
-         log->log(LoggerLevel::Error, "Initilization failed!");
+         log->log(LoggerLevel::Error, "Initialization failed!");
 
     return success;
 }

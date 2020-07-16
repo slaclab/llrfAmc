@@ -23,16 +23,16 @@ public:
     // Factory method, which returns a smart pointer
     static Gen2Llrf create(Path p);
 
-    // Call initilization sequence of both cards
+    // Call initialization sequence of both cards
     bool init() const;
 
-    // Check if the down converter card is initilized
+    // Check if the down converter card is initialized
     bool isDownConvInited() const;
 
-    // Check if the up converter card is initilized
+    // Check if the up converter card is initialized
     bool isUpConvInited() const;
 
-    // Check is both cards are initilized
+    // Check is both cards are initialized
     bool isInited() const;
 
     // Get copies of the Down and Up converter objects

@@ -26,7 +26,7 @@ public:
     static void        setLevel(const LoggerLevel& l) { globalLevel = l; };
     static LoggerLevel getLevel()                     { return globalLevel; };
 
-    // Log a new mesage
+    // Log a new message
     void log(const LoggerLevel& lvl, const std::string& msg);
 
 private:
