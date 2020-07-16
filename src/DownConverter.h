@@ -18,7 +18,7 @@ typedef boost::shared_ptr<IDownConverter> DownConverter;
 
 class IDownConverter
 {
-public: 
+public:
     IDownConverter(Path p);
 
     // Factory method, which returns a smart pointer

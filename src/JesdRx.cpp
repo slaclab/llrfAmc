@@ -21,8 +21,8 @@ IJesdRx::IJesdRx(Path p)
     sysRefPeriodMaxReg ( IScalVal_RO::create( root->findByName("SysRefPeriodmax") ) ),
     positionErrReg     ( IScalVal_RO::create( root->findByName("PositionErr") ) ),
     alignErrReg        ( IScalVal_RO::create( root->findByName("AlignErr") ) ),
-    clearErrorsCmd     ( ICommand::create( root->findByName("ClearRxErrors") ) ), 
-    resetGTsCmd        ( ICommand::create( root->findByName("ResetRxGTs") ) ), 
+    clearErrorsCmd     ( ICommand::create( root->findByName("ClearRxErrors") ) ),
+    resetGTsCmd        ( ICommand::create( root->findByName("ResetRxGTs") ) ),
     numLanes           ( enableReg->getSizeBits() ),
     log                ( ILogger::create(ModuleName.c_str()) )
 {

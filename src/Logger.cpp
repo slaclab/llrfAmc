@@ -36,12 +36,12 @@ bool operator>(LoggerLevel lhs, LoggerLevel rhs)
 
 bool operator<=(LoggerLevel lhs, LoggerLevel rhs)
 {
-    return !(lhs > rhs); 
+    return !(lhs > rhs);
 }
 
 bool operator>=(LoggerLevel lhs, LoggerLevel rhs)
 {
-    return !(lhs < rhs); 
+    return !(lhs < rhs);
 }
 
 bool operator==(LoggerLevel lhs, LoggerLevel rhs)
@@ -51,7 +51,7 @@ bool operator==(LoggerLevel lhs, LoggerLevel rhs)
 
 bool operator!=(LoggerLevel lhs, LoggerLevel rhs)
 {
-    return !(lhs == rhs); 
+    return !(lhs == rhs);
 }
 
 std::ostream& operator<<(std::ostream& os, LoggerLevel ll)

@@ -3,7 +3,7 @@
 
 #include <boost/shared_ptr.hpp>
 #include <boost/make_shared.hpp>
-#include <algorithm> 
+#include <algorithm>
 #include <cpsw_api_user.h>
 
 #include "helpers.h"

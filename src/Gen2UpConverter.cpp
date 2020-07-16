@@ -60,7 +60,7 @@ bool IGen2UpConverter::init()
 
         sleep(2);
 
-        // - Init Dac 
+        // - Init Dac
         dac->init();
         dac->clearAlarms();
         dac->ncoSync();

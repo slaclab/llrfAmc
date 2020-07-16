@@ -43,7 +43,7 @@ bool IDownConverter::init()
         initAmcCardCmd->execute();
         // - Clear JesdRx errors
         jesdRx->clearErrors();
-        
+
         sleep(1);
 
         // JESD Link Health Checking

@@ -19,7 +19,7 @@ public:
 
     // Factory method, which returns a smart pointer
     static JesdTx create(Path p);
-    
+
     void setEnable(uint32_t enable) const;
     uint32_t getEnable() const;
     void clearErrors() const;

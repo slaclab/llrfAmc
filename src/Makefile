@@ -26,12 +26,12 @@ TESTSRCS    = $(wildcard $(TESTDIR)/*.cpp)
 TEST_TARGET = $(patsubst $(TESTDIR)/%.cpp, $(TESTBINDIR)/%, $(TESTSRCS))
 
 CXXFLAGS  = -g -std=c++0x -fPIC
-CXXFLAGS += $(addprefix -I,. $(CPSW_DIR)/include $(BOOST_DIR)/include $(YAML_CPP_DIR)/include) 
+CXXFLAGS += $(addprefix -I,. $(CPSW_DIR)/include $(BOOST_DIR)/include $(YAML_CPP_DIR)/include)
 
 LIBS_EXT = $(addprefix -l,$(LIB_NAME) cpsw yaml-cpp boost_system rt dl)
 LIBS_SYS = -Wl,--whole-archive -lpthread -Wl,--no-whole-archive -lrt -ldl
 
-LDIR  = -L. 
+LDIR  = -L.
 LDIR += -L$(CPSW_DIR)/lib
 LDIR += -L$(BOOST_DIR)/lib
 LDIR += -L$(YAML_CPP_DIR)/lib
@@ -65,14 +65,14 @@ $(TESTBINDIR)/%: $(TESTDIR)/%.cpp
 
 clean:
 	$(RM) -rf $(OBJDIR)
-	$(RM) -rf $(LIBDIR) 
+	$(RM) -rf $(LIBDIR)
 	$(RM) -rf $(TESTBINDIR)
 
 install: $(SLIB) $(DLIB) $(TEST_TARGET)
 	@mkdir -p $(INSTALL_DIR)/$(TARCH)/lib
 	install -C $(SLIB) $(INSTALL_DIR)/$(TARCH)/lib/
 	install -C $(DLIB) $(INSTALL_DIR)/$(TARCH)/lib/
-	
+
 	@mkdir -p $(INSTALL_DIR)/$(TARCH)/include
 	install -C $(HEADERS) $(INSTALL_DIR)/$(TARCH)/include/
 

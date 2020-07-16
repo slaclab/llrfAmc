@@ -20,7 +20,7 @@ typedef boost::shared_ptr<IGen2UpConverter>  Gen2UpConverter;
 
 class IGen2UpConverter
 {
-public: 
+public:
     IGen2UpConverter(Path p);
 
     // Factory method, which returns a smart pointer

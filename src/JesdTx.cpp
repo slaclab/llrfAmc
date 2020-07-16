@@ -19,8 +19,8 @@ IJesdTx::IJesdTx(Path p)
     statusValidCntReg  ( IScalVal_RO::create( root->findByName("StatusValidCnt") ) ),
     sysRefPeriodMinReg ( IScalVal_RO::create( root->findByName("SysRefPeriodmin") ) ),
     sysRefPeriodMaxReg ( IScalVal_RO::create( root->findByName("SysRefPeriodmax") ) ),
-    clearErrorsCmd     ( ICommand::create( root->findByName("ClearTxStatus") ) ), 
-    resetGTsCmd        ( ICommand::create( root->findByName("ResetTxGTs") ) ), 
+    clearErrorsCmd     ( ICommand::create( root->findByName("ClearTxStatus") ) ),
+    resetGTsCmd        ( ICommand::create( root->findByName("ResetTxGTs") ) ),
     numLanes           ( enableReg->getSizeBits() ),
     log                ( ILogger::create(ModuleName.c_str()) )
 {

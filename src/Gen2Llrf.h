@@ -17,7 +17,7 @@ typedef boost::shared_ptr<IGen2Llrf> Gen2Llrf;
 
 class IGen2Llrf
 {
-public: 
+public:
     IGen2Llrf(Path p);
 
     // Factory method, which returns a smart pointer
