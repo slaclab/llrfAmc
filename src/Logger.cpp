@@ -1,3 +1,24 @@
+/**
+ *-----------------------------------------------------------------------------
+ * Title      : Simple Logger
+ * ----------------------------------------------------------------------------
+ * File       : Logger.cpp
+ * Author     : Jesus Vasquez, jvasquez@slac.stanford.edu
+ * Created    : 2020-07-16
+ * ----------------------------------------------------------------------------
+ * Description:
+ * Simple logger class.
+ * ----------------------------------------------------------------------------
+ * This file is part of llrfAmc. It is subject to
+ * the license terms in the LICENSE.txt file found in the top-level directory
+ * of this distribution and at:
+    * https://confluence.slac.stanford.edu/display/ppareg/LICENSE.html.
+ * No part of llrfAmc, including this file, may be
+ * copied, modified, propagated, or distributed except according to the terms
+ * contained in the LICENSE.txt file.
+ * ----------------------------------------------------------------------------
+**/
+
 #include "Logger.h"
 
 LoggerLevel ILogger::globalLevel = LoggerLevel::Error;

@@ -1,6 +1,28 @@
 #ifndef _GEN2LLRF_H_
 #define _GEN2LLRF_H_
 
+/**
+ *-----------------------------------------------------------------------------
+ * Title      : Gen2 LLRF System Driver
+ * ----------------------------------------------------------------------------
+ * File       : Gen2Llrf.h
+ * Author     : Jesus Vasquez, jvasquez@slac.stanford.edu
+ * Created    : 2020-07-16
+ * ----------------------------------------------------------------------------
+ * Description:
+ * Low level driver for the LLRF system conformed by the Gen2UpConverter and
+ * DownConverter cards.
+ * ----------------------------------------------------------------------------
+ * This file is part of llrfAmc. It is subject to
+ * the license terms in the LICENSE.txt file found in the top-level directory
+ * of this distribution and at:
+    * https://confluence.slac.stanford.edu/display/ppareg/LICENSE.html.
+ * No part of llrfAmc, including this file, may be
+ * copied, modified, propagated, or distributed except according to the terms
+ * contained in the LICENSE.txt file.
+ * ----------------------------------------------------------------------------
+**/
+
 #include <iostream>
 #include <boost/shared_ptr.hpp>
 #include <boost/make_shared.hpp>

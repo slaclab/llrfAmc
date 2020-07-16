@@ -1,6 +1,27 @@
 #ifndef _JESDRX_H_
 #define _JESDRX_H_
 
+/**
+ *-----------------------------------------------------------------------------
+ * Title      : JesdRx Driver
+ * ----------------------------------------------------------------------------
+ * File       : JesdRx.h
+ * Author     : Jesus Vasquez, jvasquez@slac.stanford.edu
+ * Created    : 2020-07-16
+ * ----------------------------------------------------------------------------
+ * Description:
+ * Low level driver for the JesdRx module.
+ * ----------------------------------------------------------------------------
+ * This file is part of llrfAmc. It is subject to
+ * the license terms in the LICENSE.txt file found in the top-level directory
+ * of this distribution and at:
+    * https://confluence.slac.stanford.edu/display/ppareg/LICENSE.html.
+ * No part of llrfAmc, including this file, may be
+ * copied, modified, propagated, or distributed except according to the terms
+ * contained in the LICENSE.txt file.
+ * ----------------------------------------------------------------------------
+**/
+
 #include <boost/shared_ptr.hpp>
 #include <boost/make_shared.hpp>
 #include <algorithm>
