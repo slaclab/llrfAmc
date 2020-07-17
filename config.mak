@@ -1,7 +1,7 @@
 ################
 ### Lib name ###
 ################
-LIB_NAME = llrfGen2Driver
+LIB_NAME = llrfAmc
 
 #####################
 ### Arch Versions ###
