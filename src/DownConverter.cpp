@@ -44,6 +44,11 @@ IDownConverter::IDownConverter(Path p)
     log->log(LoggerLevel::Debug, "Object created");
 }
 
+std::string IDownConverter::getModuleName()
+{
+    return ModuleName;
+}
+
 bool IDownConverter::init()
 {
     log->log(LoggerLevel::Debug, "Initializing...");

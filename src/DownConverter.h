@@ -45,6 +45,8 @@ public:
     // Factory method, which returns a smart pointer
     static DownConverter create(Path p);
 
+    static std::string getModuleName();
+
     bool init();
 
     bool isInited();
