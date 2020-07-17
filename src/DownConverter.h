@@ -45,17 +45,17 @@ public:
     // Factory method, which returns a smart pointer
     static DownConverter create(Path p);
 
+    // Module name
+    static const std::string ModuleName;
+
     // Get the module name
-    static std::string getModuleName();
+    std::string getModuleName() const;
 
     bool init();
 
     bool isInited();
 
 private:
-    // Module name
-    static const std::string ModuleName;
-
     // CPSW object paths
     Path       root;
     Path       jesdRoot;
