@@ -1,14 +1,15 @@
 /**
  *-----------------------------------------------------------------------------
- * Title      : Gen2 LLRF System Driver
+ * Title      : LLRF System Driver
  * ----------------------------------------------------------------------------
- * File       : Gen2Llrf.cpp
+ * File       : Llrf.cpp
  * Author     : Jesus Vasquez, jvasquez@slac.stanford.edu
  * Created    : 2020-07-16
  * ----------------------------------------------------------------------------
  * Description:
- * Low level driver for the LLRF system conformed by the Gen2UpConverter and
- * DownConverter cards.
+ * Low level driver for the LLRF systems. It is conformed by a DownConverter
+ * and either a Gen1 ot Gen2 Up converter card, depending on which one if
+ * present in the YAML description files.
  * ----------------------------------------------------------------------------
  * This file is part of llrfAmc. It is subject to
  * the license terms in the LICENSE.txt file found in the top-level directory
@@ -21,19 +22,19 @@
 **/
 
 #include <unistd.h>
-#include "Gen2Llrf.h"
+#include "Llrf.h"
 
-const std::string IGen2Llrf::ModuleName = "Gen2Llrf";
+const std::string ILlrf::ModuleName = "Llrf";
 
-Gen2Llrf IGen2Llrf::create(Path p)
+Llrf ILlrf::create(Path p)
 {
     if(!p)
         throw std::runtime_error(ModuleName + " : The root Path is empty");
 
-    return boost::make_shared<IGen2Llrf>(p);
+    return boost::make_shared<ILlrf>(p);
 }
 
-IGen2Llrf::IGen2Llrf(Path p)
+ILlrf::ILlrf(Path p)
 :
     root     ( p ),
     log      ( ILogger::create(ModuleName.c_str()) )
@@ -81,7 +82,7 @@ IGen2Llrf::IGen2Llrf(Path p)
     log->log(LoggerLevel::Debug, "Object created");
 }
 
-bool IGen2Llrf::init() const
+bool ILlrf::init() const
 {
     log->log(LoggerLevel::Debug, "Initializing...");
 
@@ -97,27 +98,27 @@ bool IGen2Llrf::init() const
     return success;
 }
 
-bool IGen2Llrf::isInited() const
+bool ILlrf::isInited() const
 {
     return ( downConv->isInited() & upConv->isInited() );
 }
 
-bool IGen2Llrf::isDownConvInited() const
+bool ILlrf::isDownConvInited() const
 {
     return downConv->isInited();
 }
 
-bool IGen2Llrf::isUpConvInited() const
+bool ILlrf::isUpConvInited() const
 {
     return upConv->isInited();
 }
 
-DownConverter IGen2Llrf::getDownConv() const
+DownConverter ILlrf::getDownConv() const
 {
    return downConv;
 }
 
-UpConverter IGen2Llrf::getUpConv() const
+UpConverter ILlrf::getUpConv() const
 {
     return upConv;
 }

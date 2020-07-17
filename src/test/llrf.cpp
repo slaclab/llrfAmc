@@ -2,7 +2,8 @@
 #include <arpa/inet.h>
 #include <iostream>
 #include <string>
-#include "Gen2Llrf.h"
+#include <Logger.h>
+#include "Llrf.h"
 #include "helpers.h"
 
 void usage(const char* name)
@@ -83,12 +84,12 @@ int main(int argc, char **argv)
     ILogger::setLevel(LoggerLevel::Debug);
 
     // Create Gen2Llrf object
-    std::cout << "Creating a Gen2Llrf object..." << std::endl;
-    Gen2Llrf llrf { IGen2Llrf::create(root) };
+    std::cout << "Creating an Llrf object..." << std::endl;
+    Llrf llrf { ILlrf::create(root) };
     std::cout << std::endl;
 
     // Initialize it
-    std::cout << "Initializing the Gen2Llrf object..." << std::endl;
+    std::cout << "Initializing the Llrf object..." << std::endl;
     bool success;
     if ( success =  llrf->init() )
     {

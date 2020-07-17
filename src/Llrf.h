@@ -3,15 +3,16 @@
 
 /**
  *-----------------------------------------------------------------------------
- * Title      : Gen2 LLRF System Driver
+ * Title      : LLRF System Driver
  * ----------------------------------------------------------------------------
- * File       : Gen2Llrf.h
+ * File       : Llrf.h
  * Author     : Jesus Vasquez, jvasquez@slac.stanford.edu
  * Created    : 2020-07-16
  * ----------------------------------------------------------------------------
  * Description:
- * Low level driver for the LLRF system conformed by the Gen2UpConverter and
- * DownConverter cards.
+ * Low level driver for the LLRF systems. It is conformed by a DownConverter
+ * and either a Gen1 ot Gen2 Up converter card, depending on which one if 
+ * present in the YAML description files.
  * ----------------------------------------------------------------------------
  * This file is part of llrfAmc. It is subject to
  * the license terms in the LICENSE.txt file found in the top-level directory
@@ -34,17 +35,17 @@
 #include "DownConverter.h"
 #include "Logger.h"
 
-class IGen2Llrf;
+class ILlrf;
 
-typedef boost::shared_ptr<IGen2Llrf> Gen2Llrf;
+typedef boost::shared_ptr<ILlrf> Llrf;
 
-class IGen2Llrf
+class ILlrf
 {
 public:
-    IGen2Llrf(Path p);
+    ILlrf(Path p);
 
     // Factory method, which returns a smart pointer
-    static Gen2Llrf create(Path p);
+    static Llrf create(Path p);
 
     // Call initialization sequence of both cards
     bool init() const;
