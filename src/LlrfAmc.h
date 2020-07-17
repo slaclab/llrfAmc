@@ -5,7 +5,7 @@
  *-----------------------------------------------------------------------------
  * Title      : LLRF System Driver
  * ----------------------------------------------------------------------------
- * File       : Llrf.h
+ * File       : LlrfAmc.h
  * Author     : Jesus Vasquez, jvasquez@slac.stanford.edu
  * Created    : 2020-07-16
  * ----------------------------------------------------------------------------
@@ -36,17 +36,17 @@
 #include "Gen2UpConverter.h"
 #include "Logger.h"
 
-class ILlrf;
+class ILlrfAmc;
 
-typedef boost::shared_ptr<ILlrf> Llrf;
+typedef boost::shared_ptr<ILlrfAmc> LlrfAmc;
 
-class ILlrf
+class ILlrfAmc
 {
 public:
-    ILlrf(Path p);
+    ILlrfAmc(Path p);
 
     // Factory method, which returns a smart pointer
-    static Llrf create(Path p);
+    static LlrfAmc create(Path p);
 
     // Call initialization sequence of both cards
     bool init() const;

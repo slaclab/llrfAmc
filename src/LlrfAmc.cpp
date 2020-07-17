@@ -2,7 +2,7 @@
  *-----------------------------------------------------------------------------
  * Title      : LLRF System Driver
  * ----------------------------------------------------------------------------
- * File       : Llrf.cpp
+ * File       : LlrfAmc.cpp
  * Author     : Jesus Vasquez, jvasquez@slac.stanford.edu
  * Created    : 2020-07-16
  * ----------------------------------------------------------------------------
@@ -22,19 +22,19 @@
 **/
 
 #include <unistd.h>
-#include "Llrf.h"
+#include "LlrfAmc.h"
 
-const std::string ILlrf::ModuleName = "Llrf";
+const std::string ILlrfAmc::ModuleName = "LlrfAmc";
 
-Llrf ILlrf::create(Path p)
+LlrfAmc ILlrfAmc::create(Path p)
 {
     if(!p)
         throw std::runtime_error(ModuleName + " : The root Path is empty");
 
-    return boost::make_shared<ILlrf>(p);
+    return boost::make_shared<ILlrfAmc>(p);
 }
 
-ILlrf::ILlrf(Path p)
+ILlrfAmc::ILlrfAmc(Path p)
 :
     root     ( p ),
     log      ( ILogger::create(ModuleName.c_str()) )
@@ -52,7 +52,7 @@ ILlrf::ILlrf(Path p)
     downConv = IDownConverter::create(root);
 
     // Check if the gen1 up converter exists
-    std::string g1ucmn ( "AmcMrLlrfUpConvert" );
+    std::string g1ucmn ( "AmcMrLlrfAmcUpConvert" );
     log->log(LoggerLevel::Debug, "Verifying if the gen1 up converter module " + g1ucmn + " exists under " + CpswTopPaths::AppCore);
     Path g1ucp { tryFindPath(root, CpswTopPaths::AppCore + g1ucmn) };
 
@@ -82,7 +82,7 @@ ILlrf::ILlrf(Path p)
     log->log(LoggerLevel::Debug, "Object created");
 }
 
-bool ILlrf::init() const
+bool ILlrfAmc::init() const
 {
     log->log(LoggerLevel::Debug, "Initializing...");
 
@@ -98,27 +98,27 @@ bool ILlrf::init() const
     return success;
 }
 
-bool ILlrf::isInited() const
+bool ILlrfAmc::isInited() const
 {
     return ( downConv->isInited() & upConv->isInited() );
 }
 
-bool ILlrf::isDownConvInited() const
+bool ILlrfAmc::isDownConvInited() const
 {
     return downConv->isInited();
 }
 
-bool ILlrf::isUpConvInited() const
+bool ILlrfAmc::isUpConvInited() const
 {
     return upConv->isInited();
 }
 
-DownConverter ILlrf::getDownConv() const
+DownConverter ILlrfAmc::getDownConv() const
 {
    return downConv;
 }
 
-UpConverter ILlrf::getUpConv() const
+UpConverter ILlrfAmc::getUpConv() const
 {
     return upConv;
 }

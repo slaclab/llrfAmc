@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 #include <Logger.h>
-#include "Llrf.h"
+#include "LlrfAmc.h"
 #include "helpers.h"
 
 void usage(const char* name)
@@ -83,9 +83,9 @@ int main(int argc, char **argv)
     // Set logger level to "Debug"
     ILogger::setLevel(LoggerLevel::Debug);
 
-    // Create Gen2Llrf object
-    std::cout << "Creating an Llrf object..." << std::endl;
-    Llrf llrf { ILlrf::create(root) };
+    // Create LlrfAmc object
+    std::cout << "Creating an LlrfAmc object..." << std::endl;
+    LlrfAmc llrf { ILlrfAmc::create(root) };
     std::cout << std::endl;
 
     // Print the down and up converter module names
@@ -94,7 +94,7 @@ int main(int argc, char **argv)
     std::cout << std::endl;
 
     // Initialize it
-    std::cout << "Initializing the Llrf object..." << std::endl;
+    std::cout << "Initializing the LlrfAmc object..." << std::endl;
     bool success;
     if ( success =  llrf->init() )
     {
