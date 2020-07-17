@@ -22,7 +22,7 @@
 #include <unistd.h>
 #include "Gen1UpConverter.h"
 
-const std::string IGen1UpConverter::ModuleName = "AmcMrLlrfGen1UpConvert";
+const std::string IGen1UpConverter::ModuleName = "/";
 
 Gen1UpConverter IGen1UpConverter::create(Path p)
 {
@@ -34,8 +34,8 @@ Gen1UpConverter IGen1UpConverter::create(Path p)
 
 IGen1UpConverter::IGen1UpConverter(Path p)
 :
-    IUpConverter   ( p, ModuleName )
-    //dac            ( DacLtc2000::create(root) )
+    IUpConverter   ( p, ModuleName ),
+    dac            ( DacLtc2000::create(root) )
 {
      log->log(LoggerLevel::Debug, "Object created");
 }
@@ -50,7 +50,54 @@ bool IGen1UpConverter::init()
     log->log(LoggerLevel::Debug, "Initializing...");
 
     // Initialization sequence
-    bool success = true;
+    bool success;
+    std::size_t maxRetries { 5 };
+    for (std::size_t i {1}; i <= maxRetries; ++i)
+    {
+        log->log(LoggerLevel::Debug, "Initialization try # " + to_string(i) + ":");
+        log->log(LoggerLevel::Debug, "===========================");
+
+        // - Power down Lmk sys ref
+        lmk->pwrDwnSysRef();
+        // - Reset Jesd GTs
+        jesdRx->resetGTs();
+        jesdTx->resetGTs();
+        // - Initialize AMC card
+        initAmcCardCmd->execute();
+        // - Clear Jesd errors
+        jesdRx->clearErrors();
+        jesdTx->clearErrors();
+
+        sleep(1);
+
+        // JESD Link Health Checking
+        // - Check DAC errors
+        success = dac->isLocked();
+        // - Check JesdTx errors
+        success &= jesdTx->isLocked();
+        // - Check JesdRx errors
+        success &= jesdRx->isLocked();
+
+        if ( success )
+        {
+            log->log(LoggerLevel::Debug, "Initialization succeed!");
+            break;
+        }
+        else
+        {
+            if ( i == maxRetries )
+            {
+               log->log(LoggerLevel::Error,  "Initialization failed after " + to_string(maxRetries) + " retries. Aborting!");
+               break;
+            }
+            else
+            {
+               log->log(LoggerLevel::Warning, "Initialization # " + to_string(i) + " failed. Retying...");
+            }
+        }
+    }
+
+    log->log(LoggerLevel::Debug, "===========================");
 
     return success;
 }
@@ -63,7 +110,7 @@ bool IGen1UpConverter::isInited()
     bool success { true };
 
     // Check if DAC is locked
-    //success &= dac->isLocked();
+    success &= dac->isLocked();
 
     // Check is JesdRx is locked
     success &= jesdRx->isLocked();

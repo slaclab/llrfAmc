@@ -1,16 +1,16 @@
-#ifndef _GENUPCONVERTER_H_
-#define _GEN1UPCONVERTER_H_
+#ifndef _DAC38J84_H_
+#define _DAC38J84_H_
 
 /**
  *-----------------------------------------------------------------------------
- * Title      : Gen1UpConverter Card Driver
+ * Title      : Ltc2000 Driver
  * ----------------------------------------------------------------------------
- * File       : Gen1UpConverter.h
+ * File       : Ltc2000.h
  * Author     : Jesus Vasquez, jvasquez@slac.stanford.edu
- * Created    : 2020-07-17
+ * Created    : 2020-07-16
  * ----------------------------------------------------------------------------
  * Description:
- * Low level driver for the Gen1 up converter card.
+ * Low level driver for the Ltc2000 DAC.
  * ----------------------------------------------------------------------------
  * This file is part of llrfAmc. It is subject to
  * the license terms in the LICENSE.txt file found in the top-level directory
@@ -22,42 +22,36 @@
  * ----------------------------------------------------------------------------
 **/
 
-#include <iostream>
+#include <string>
+#include <unistd.h>
 #include <boost/shared_ptr.hpp>
 #include <boost/make_shared.hpp>
-#include <yaml-cpp/yaml.h>
 #include <cpsw_api_user.h>
 
-#include "CpswTopPaths.h"
-#include "UpConverter.h"
-#include "DacLtc2000.h"
+#include "helpers.h"
 #include "Logger.h"
 
-class IGen1UpConverter;
+class ILtc2000;
 
-typedef boost::shared_ptr<IGen1UpConverter>  Gen1UpConverter;
+typedef boost::shared_ptr<ILtc2000> Ltc2000;
 
-class IGen1UpConverter : public IUpConverter
+class ILtc2000
 {
 public:
-    IGen1UpConverter(Path p);
+    ILtc2000(Path p);
 
     // Factory method, which returns a smart pointer
-    static Gen1UpConverter create(Path p);
+    static Ltc2000 create(Path p);
 
-    // Get the module name
-    static std::string getModuleName();
+    void init();
 
-    bool init();
-
-    bool isInited();
+    bool isLocked();
 
 private:
-    // Module name
     static const std::string ModuleName;
 
-    // Devices specific to Gen1 card
-    DacLtc2000   dac;
+    Path        root;
+    Logger      log;
 };
 
 #endif
