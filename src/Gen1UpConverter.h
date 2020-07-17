@@ -1,18 +1,16 @@
-#ifndef _GEN2LLRF_H_
-#define _GEN2LLRF_H_
+#ifndef _GENUPCONVERTER_H_
+#define _GEN1UPCONVERTER_H_
 
 /**
  *-----------------------------------------------------------------------------
- * Title      : LLRF System Driver
+ * Title      : Gen1UpConverter Card Driver
  * ----------------------------------------------------------------------------
- * File       : Llrf.h
+ * File       : Gen1UpConverter.h
  * Author     : Jesus Vasquez, jvasquez@slac.stanford.edu
- * Created    : 2020-07-16
+ * Created    : 2020-07-17
  * ----------------------------------------------------------------------------
  * Description:
- * Low level driver for the LLRF systems. It is conformed by a DownConverter
- * and either a Gen1 ot Gen2 Up converter card, depending on which one if
- * present in the YAML description files.
+ * Low level driver for the Gen1 up converter card.
  * ----------------------------------------------------------------------------
  * This file is part of llrfAmc. It is subject to
  * the license terms in the LICENSE.txt file found in the top-level directory
@@ -30,51 +28,36 @@
 #include <yaml-cpp/yaml.h>
 #include <cpsw_api_user.h>
 
+#include "CpswTopPaths.h"
 #include "UpConverter.h"
-#include "DownConverter.h"
-#include "Gen1UpConverter.h"
-#include "Gen2UpConverter.h"
+//#include "DacLtc2000.h"
 #include "Logger.h"
 
-class ILlrf;
+class IGen1UpConverter;
 
-typedef boost::shared_ptr<ILlrf> Llrf;
+typedef boost::shared_ptr<IGen1UpConverter>  Gen1UpConverter;
 
-class ILlrf
+class IGen1UpConverter : public IUpConverter
 {
 public:
-    ILlrf(Path p);
+    IGen1UpConverter(Path p);
 
     // Factory method, which returns a smart pointer
-    static Llrf create(Path p);
+    static Gen1UpConverter create(Path p);
 
-    // Call initialization sequence of both cards
-    bool init() const;
+    // Get the module name
+    static std::string getModuleName();
 
-    // Check if the down converter card is initialized
-    bool isDownConvInited() const;
+    bool init();
 
-    // Check if the up converter card is initialized
-    bool isUpConvInited() const;
-
-    // Check is both cards are initialized
-    bool isInited() const;
-
-    // Get copies of the Down and Up converter objects
-    DownConverter   getDownConv() const;
-    UpConverter     getUpConv() const;
+    bool isInited();
 
 private:
+    // Module name
     static const std::string ModuleName;
 
-    Path            root;
-
-    // Devices
-    UpConverter   upConv;
-    DownConverter downConv;
-
-    // Logger
-    Logger          log;
+    // Devices specific to Gen1 card
+    //DacLtc2000   dac;
 };
 
 #endif

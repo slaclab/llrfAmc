@@ -76,7 +76,7 @@ ILlrf::ILlrf(Path p)
     else
     {
         log->log(LoggerLevel::Debug, "It exist. Creating a Gen1UpConveter object.");
-        //upConv = IGen1UpConverter::create(root);
+        upConv = IGen1UpConverter::create(root);
     }
 
     log->log(LoggerLevel::Debug, "Object created");
