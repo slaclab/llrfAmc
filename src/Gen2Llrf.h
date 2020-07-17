@@ -29,6 +29,7 @@
 #include <yaml-cpp/yaml.h>
 #include <cpsw_api_user.h>
 
+#include "UpConverter.h"
 #include "Gen2UpConverter.h"
 #include "DownConverter.h"
 #include "Logger.h"
@@ -59,7 +60,7 @@ public:
 
     // Get copies of the Down and Up converter objects
     DownConverter   getDownConv() const;
-    Gen2UpConverter getUpConv() const;
+    UpConverter     getUpConv() const;
 
 private:
     static const std::string ModuleName;
@@ -67,8 +68,8 @@ private:
     Path            root;
 
     // Devices
-    Gen2UpConverter upConv;
-    DownConverter   downConv;
+    UpConverter   upConv;
+    DownConverter downConv;
 
     // Logger
     Logger          log;
