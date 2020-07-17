@@ -45,17 +45,14 @@ public:
     // Factory method, which returns a smart pointer
     static Gen1UpConverter create(Path p);
 
-    // Get the module name
-    static std::string getModuleName();
+    // Module name
+    static const std::string ModuleName;
 
     bool init();
 
     bool isInited();
 
 private:
-    // Module name
-    static const std::string ModuleName;
-
     // Devices specific to Gen1 card
     Ltc2000 dac;
 };

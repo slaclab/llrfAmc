@@ -40,11 +40,6 @@ IGen2UpConverter::IGen2UpConverter(Path p)
      log->log(LoggerLevel::Debug, "Object created");
 }
 
-std::string IGen2UpConverter::getModuleName()
-{
-    return ModuleName;
-}
-
 bool IGen2UpConverter::init()
 {
     log->log(LoggerLevel::Debug, "Initializing...");

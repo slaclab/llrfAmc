@@ -40,7 +40,7 @@ ILlrf::ILlrf(Path p)
     log      ( ILogger::create(ModuleName.c_str()) )
 {
     // Check if the downconverter module exists
-    std::string dcmn ( IDownConverter::getModuleName() );
+    std::string dcmn ( IDownConverter::ModuleName );
     log->log(LoggerLevel::Debug, "Verifying if the down converter module " + dcmn + " exists under " + CpswTopPaths::AppCore);
     Path dcp { tryFindPath(root, CpswTopPaths::AppCore + dcmn) };
 
@@ -62,7 +62,7 @@ ILlrf::ILlrf(Path p)
         log->log(LoggerLevel::Debug, "Gen1 up converter module '" + g1ucmn + "' not found!");
 
         // Check if the gen2 up converter exists
-        std::string g2ucmn ( IGen2UpConverter::getModuleName() );
+        std::string g2ucmn ( IGen2UpConverter::ModuleName );
         log->log(LoggerLevel::Debug, "Verifying if the gen2 up converter module " + g2ucmn + " exists under " + CpswTopPaths::AppCore);
         Path g2ucp { tryFindPath(root, CpswTopPaths::AppCore + g2ucmn) };
 

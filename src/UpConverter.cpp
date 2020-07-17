@@ -22,8 +22,9 @@
 #include <unistd.h>
 #include "UpConverter.h"
 
-IUpConverter::IUpConverter(Path p, const std::string& moduleName)
+IUpConverter::IUpConverter(Path p, const std::string& mn)
 :
+	moduleName     ( mn ),
     root           ( p->findByName( (CpswTopPaths::AppCore + moduleName).c_str() ) ),
     jesdRoot       ( p->findByName( CpswTopPaths::AppTopJesdBay1.c_str() ) ),
     jesdRx         ( IJesdRx::create(jesdRoot) ),
@@ -32,4 +33,9 @@ IUpConverter::IUpConverter(Path p, const std::string& moduleName)
     initAmcCardCmd ( ICommand::create(root->findByName("InitAmcCard") ) ),
     log            ( ILogger::create(moduleName.c_str()) )
 {
+}
+
+std::string IUpConverter::getModuleName() const
+{
+	return moduleName;
 }

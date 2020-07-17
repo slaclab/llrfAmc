@@ -45,17 +45,14 @@ public:
     // Factory method, which returns a smart pointer
     static Gen2UpConverter create(Path p);
 
-    // Get the module name
-    static std::string getModuleName();
+    // Module name
+    static const std::string ModuleName;
 
     bool init();
 
     bool isInited();
 
 private:
-    // Module name
-    static const std::string ModuleName;
-
     // Devices specific to Gen2 card
     Dac38J84   dac;
 };

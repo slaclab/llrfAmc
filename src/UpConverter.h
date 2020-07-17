@@ -41,14 +41,18 @@ typedef boost::shared_ptr<IUpConverter>  UpConverter;
 class IUpConverter
 {
 public:
-    IUpConverter(Path p, const std::string& moduleName);
+    IUpConverter(Path p, const std::string& mn);
     virtual ~IUpConverter() {};
 
-    // This method are specific to Gen1 or Gen2 up converters
+    // These methods are specific to Gen1 or Gen2 up converters
     virtual bool init() = 0;
     virtual bool isInited() = 0;
 
+    // These methods are common to all up converters
+    std::string getModuleName() const;
+
 protected:
+    const std::string moduleName;
     // CPSW object paths
     Path        root;
     Path        jesdRoot;
