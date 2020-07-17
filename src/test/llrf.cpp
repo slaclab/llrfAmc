@@ -88,6 +88,11 @@ int main(int argc, char **argv)
     Llrf llrf { ILlrf::create(root) };
     std::cout << std::endl;
 
+    // Print the down and up converter module names
+    std::cout << "Down converter module name : " << llrf->getDownConv()->getModuleName() << std::endl;
+    std::cout << "Up converter module name   : " << llrf->getUpConv()->getModuleName() << std::endl;
+    std::cout << std::endl;
+
     // Initialize it
     std::cout << "Initializing the Llrf object..." << std::endl;
     bool success;
