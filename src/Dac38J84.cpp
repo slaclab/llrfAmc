@@ -175,7 +175,7 @@ void IDac38J84::clearAlarms()
     clearAlarmsCmd->execute();
 }
 
-bool IDac38J84::isLocked(bool verbose)
+bool IDac38J84::isLocked()
 {
     log->log(LoggerLevel::Debug, "Checking lock status:");
     log->log(LoggerLevel::Debug, "----------------------------------");

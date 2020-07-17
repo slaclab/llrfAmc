@@ -48,7 +48,7 @@ public:
     void ncoSync();
     void clearAlarms();
 
-    bool isLocked(bool verbose = false);
+    bool isLocked();
 
 private:
     static const std::string ModuleName;

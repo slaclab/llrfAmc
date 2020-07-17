@@ -30,7 +30,7 @@
 
 #include "CpswTopPaths.h"
 #include "UpConverter.h"
-#include "DacLtc2000.h"
+#include "Ltc2000.h"
 #include "Logger.h"
 
 class IGen1UpConverter;
@@ -57,7 +57,7 @@ private:
     static const std::string ModuleName;
 
     // Devices specific to Gen1 card
-    DacLtc2000   dac;
+    Ltc2000 dac;
 };
 
 #endif

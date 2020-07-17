@@ -23,7 +23,7 @@
 
 const std::string ILtc2000::ModuleName = "Ltc2000";
 
-Dac38J84 ILtc2000::create(Path p)
+Ltc2000 ILtc2000::create(Path p)
 {
     if(!p)
         throw std::runtime_error(ModuleName + " : The root Path is empty");
@@ -36,7 +36,7 @@ ILtc2000::ILtc2000(Path p)
     root ( p->findByName( ModuleName.c_str() ) ),
     log  ( ILogger::create(ModuleName.c_str()) )
 {
-    log->log(LoggerLevel::Debug, "Object created. Number of lanes = " + to_string(numLanes));
+    log->log(LoggerLevel::Debug, "Object created.");
 }
 
 void ILtc2000::init()
@@ -49,7 +49,7 @@ void ILtc2000::init()
     log->log(LoggerLevel::Debug, "Done!");
 }
 
-bool ILtc2000::isLocked(bool verbose)
+bool ILtc2000::isLocked()
 {
     log->log(LoggerLevel::Debug, "Checking lock status:");
     log->log(LoggerLevel::Debug, "----------------------------------");

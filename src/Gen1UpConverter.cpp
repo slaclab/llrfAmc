@@ -35,7 +35,7 @@ Gen1UpConverter IGen1UpConverter::create(Path p)
 IGen1UpConverter::IGen1UpConverter(Path p)
 :
     IUpConverter   ( p, ModuleName ),
-    dac            ( DacLtc2000::create(root) )
+    dac            ( ILtc2000::create(root) )
 {
      log->log(LoggerLevel::Debug, "Object created");
 }
