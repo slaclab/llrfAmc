@@ -45,6 +45,7 @@ public:
     // Factory method, which returns a smart pointer
     static Gen2UpConverter create(Path p);
 
+    // Get the module name
     static std::string getModuleName();
 
     bool init();
