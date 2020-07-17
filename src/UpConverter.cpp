@@ -7,7 +7,7 @@
  * Created    : 2020-07-17
  * ----------------------------------------------------------------------------
  * Description:
- * Base class for the low level driver for the up converter card. 
+ * Base class for the low level driver for the up converter card.
  * ----------------------------------------------------------------------------
  * This file is part of llrfAmc. It is subject to
  * the license terms in the LICENSE.txt file found in the top-level directory
