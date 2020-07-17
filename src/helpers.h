@@ -102,4 +102,6 @@ std::string to_string(const T& n)
 
 void printRegValue(Path p);
 
+Path tryFindPath(Path root, const std::string& path);
+
 #endif

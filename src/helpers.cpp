@@ -44,3 +44,18 @@ void printRegValue(Path p)
         std::cout << std::endl;
     }
 }
+
+Path tryFindPath(Path root, const std::string& path)
+{
+    Path p;
+
+    try
+    {
+        p = root->findByName(path.c_str());
+    }
+    catch(NotFoundError& e)
+    {
+    }
+
+    return p;
+}
