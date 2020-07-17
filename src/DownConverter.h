@@ -52,8 +52,10 @@ public:
     bool isInited();
 
 private:
+    // Module name
     static const std::string ModuleName;
 
+    // CPSW object paths
     Path       root;
     Path       jesdRoot;
 

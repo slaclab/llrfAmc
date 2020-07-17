@@ -49,15 +49,16 @@ public:
     virtual bool isInited() = 0;
 
 protected:
+    // CPSW object paths
     Path        root;
     Path        jesdRoot;
 
-    // Devices
+    // Devices common to all cards
     JesdRx      jesdRx;
     JesdTx      jesdTx;
     Lmk04828    lmk;
 
-    // Local commands
+    // Local commands common to all cards
     Command     initAmcCardCmd;
 
     // Logger

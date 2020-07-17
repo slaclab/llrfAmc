@@ -52,9 +52,10 @@ public:
     bool isInited();
 
 private:
+    // Module name
     static const std::string ModuleName;
 
-    // Devices
+    // Devices specific to Gen2 card
     Dac38J84   dac;
 };
 
