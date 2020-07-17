@@ -34,16 +34,15 @@ Gen2UpConverter IGen2UpConverter::create(Path p)
 
 IGen2UpConverter::IGen2UpConverter(Path p)
 :
-    root           ( p->findByName( (CpswTopPaths::AppCore + ModuleName).c_str() ) ),
-    jesdRoot       ( p->findByName( CpswTopPaths::AppTopJesdBay1.c_str() ) ),
-    jesdRx         ( IJesdRx::create(jesdRoot) ),
-    jesdTx         ( IJesdTx::create(jesdRoot) ),
-    lmk            ( ILmk04828::create(root) ),
-    dac            ( IDac38J84::create(root) ),
-    initAmcCardCmd ( ICommand::create(root->findByName("InitAmcCard") ) ),
-    log            ( ILogger::create(ModuleName.c_str()) )
+    IUpConverter   ( p, ModuleName ),
+    dac            ( IDac38J84::create(root) )
 {
      log->log(LoggerLevel::Debug, "Object created");
+}
+
+std::string IGen2UpConverter::getModuleName()
+{
+    return ModuleName;
 }
 
 bool IGen2UpConverter::init()

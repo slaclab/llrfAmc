@@ -1,16 +1,13 @@
-#ifndef _GEN2UPCONVERTER_H_
-#define _GEN2UPCONVERTER_H_
-
 /**
  *-----------------------------------------------------------------------------
- * Title      : Gen2UpConverter Card Driver
+ * Title      : UpConverter Card Driver
  * ----------------------------------------------------------------------------
- * File       : Gen2UpConverter.h
+ * File       : UpConverter.cpp
  * Author     : Jesus Vasquez, jvasquez@slac.stanford.edu
- * Created    : 2020-07-16
+ * Created    : 2020-07-17
  * ----------------------------------------------------------------------------
  * Description:
- * Low level driver for the Gen2 up converter card.
+ * Base class for the low level driver for the up converter card. 
  * ----------------------------------------------------------------------------
  * This file is part of llrfAmc. It is subject to
  * the license terms in the LICENSE.txt file found in the top-level directory
@@ -22,40 +19,17 @@
  * ----------------------------------------------------------------------------
 **/
 
-#include <iostream>
-#include <boost/shared_ptr.hpp>
-#include <boost/make_shared.hpp>
-#include <yaml-cpp/yaml.h>
-#include <cpsw_api_user.h>
-
-#include "CpswTopPaths.h"
+#include <unistd.h>
 #include "UpConverter.h"
-#include "Dac38J84.h"
-#include "Logger.h"
 
-class IGen2UpConverter;
-
-typedef boost::shared_ptr<IGen2UpConverter>  Gen2UpConverter;
-
-class IGen2UpConverter : public IUpConverter
+IUpConverter::IUpConverter(Path p, const std::string& moduleName)
+:
+    root           ( p->findByName( (CpswTopPaths::AppCore + moduleName).c_str() ) ),
+    jesdRoot       ( p->findByName( CpswTopPaths::AppTopJesdBay1.c_str() ) ),
+    jesdRx         ( IJesdRx::create(jesdRoot) ),
+    jesdTx         ( IJesdTx::create(jesdRoot) ),
+    lmk            ( ILmk04828::create(root) ),
+    initAmcCardCmd ( ICommand::create(root->findByName("InitAmcCard") ) ),
+    log            ( ILogger::create(moduleName.c_str()) )
 {
-public:
-    IGen2UpConverter(Path p);
-
-    // Factory method, which returns a smart pointer
-    static Gen2UpConverter create(Path p);
-
-    static std::string getModuleName();
-
-    bool init();
-
-    bool isInited();
-
-private:
-    static const std::string ModuleName;
-
-    // Devices
-    Dac38J84   dac;
-};
-
-#endif
+}

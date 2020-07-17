@@ -1,16 +1,16 @@
-#ifndef _GEN2UPCONVERTER_H_
-#define _GEN2UPCONVERTER_H_
+#ifndef _UPCONVERTER_H_
+#define _UPCONVERTER_H_
 
 /**
  *-----------------------------------------------------------------------------
- * Title      : Gen2UpConverter Card Driver
+ * Title      : UpConverter Card Driver
  * ----------------------------------------------------------------------------
- * File       : Gen2UpConverter.h
+ * File       : UpConverter.h
  * Author     : Jesus Vasquez, jvasquez@slac.stanford.edu
- * Created    : 2020-07-16
+ * Created    : 2020-07-17
  * ----------------------------------------------------------------------------
  * Description:
- * Low level driver for the Gen2 up converter card.
+ * Base class for the low level driver for the up converter card.
  * ----------------------------------------------------------------------------
  * This file is part of llrfAmc. It is subject to
  * the license terms in the LICENSE.txt file found in the top-level directory
@@ -29,33 +29,39 @@
 #include <cpsw_api_user.h>
 
 #include "CpswTopPaths.h"
-#include "UpConverter.h"
-#include "Dac38J84.h"
+#include "JesdRx.h"
+#include "JesdTx.h"
+#include "Lmk04828.h"
 #include "Logger.h"
 
-class IGen2UpConverter;
+class IUpConverter;
 
-typedef boost::shared_ptr<IGen2UpConverter>  Gen2UpConverter;
+typedef boost::shared_ptr<IUpConverter>  UpConverter;
 
-class IGen2UpConverter : public IUpConverter
+class IUpConverter
 {
 public:
-    IGen2UpConverter(Path p);
+    IUpConverter(Path p, const std::string& moduleName);
+    virtual ~IUpConverter() {};
 
-    // Factory method, which returns a smart pointer
-    static Gen2UpConverter create(Path p);
+    // This method are specific to Gen1 or Gen2 up converters
+    virtual bool init() = 0;
+    virtual bool isInited() = 0;
 
-    static std::string getModuleName();
-
-    bool init();
-
-    bool isInited();
-
-private:
-    static const std::string ModuleName;
+protected:
+    Path        root;
+    Path        jesdRoot;
 
     // Devices
-    Dac38J84   dac;
+    JesdRx      jesdRx;
+    JesdTx      jesdTx;
+    Lmk04828    lmk;
+
+    // Local commands
+    Command     initAmcCardCmd;
+
+    // Logger
+    Logger      log;
 };
 
 #endif
