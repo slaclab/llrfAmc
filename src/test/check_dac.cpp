@@ -5,7 +5,7 @@
 #include <sstream>
 #include "Gen2UpConverter.h"
 #include "helpers.h"
-#include "Logger.h"
+#include "LlrfAmcLogger.h"
 
 void usage(const char* name)
 {

@@ -31,7 +31,7 @@
 #include "CpswTopPaths.h"
 #include "UpConverter.h"
 #include "Dac38J84.h"
-#include "Logger.h"
+#include "LlrfAmcLogger.h"
 
 class IGen2UpConverter;
 

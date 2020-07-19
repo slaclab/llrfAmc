@@ -27,7 +27,7 @@
 #include <cpsw_api_user.h>
 
 #include "helpers.h"
-#include "Logger.h"
+#include "LlrfAmcLogger.h"
 
 class IJesdTx;
 

@@ -2,7 +2,7 @@
 #include <arpa/inet.h>
 #include <iostream>
 #include <string>
-#include <Logger.h>
+#include "LlrfAmcLogger.h"
 #include "LlrfAmc.h"
 #include "helpers.h"
 

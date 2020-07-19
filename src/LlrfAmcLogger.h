@@ -1,11 +1,11 @@
-#ifndef _LOGGER_H_
-#define _LOGGER_H_
+#ifndef _LLRFAMCLOGGER_H_
+#define _LLRFAMCLOGGER_H_
 
 /**
  *-----------------------------------------------------------------------------
  * Title      : Simple Logger
  * ----------------------------------------------------------------------------
- * File       : Logger.h
+ * File       : LlrfAmcLogger.h
  * Author     : Jesus Vasquez, jvasquez@slac.stanford.edu
  * Created    : 2020-07-16
  * ----------------------------------------------------------------------------

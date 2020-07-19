@@ -31,7 +31,7 @@
 #include "CpswTopPaths.h"
 #include "JesdRx.h"
 #include "Lmk04828.h"
-#include "Logger.h"
+#include "LlrfAmcLogger.h"
 
 class IDownConverter;
 

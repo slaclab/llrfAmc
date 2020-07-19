@@ -32,7 +32,7 @@
 #include "JesdRx.h"
 #include "JesdTx.h"
 #include "Lmk04828.h"
-#include "Logger.h"
+#include "LlrfAmcLogger.h"
 
 class IUpConverter;
 

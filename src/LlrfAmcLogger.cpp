@@ -2,7 +2,7 @@
  *-----------------------------------------------------------------------------
  * Title      : Simple Logger
  * ----------------------------------------------------------------------------
- * File       : Logger.cpp
+ * File       : LlrfAmcLogger.cpp
  * Author     : Jesus Vasquez, jvasquez@slac.stanford.edu
  * Created    : 2020-07-16
  * ----------------------------------------------------------------------------
@@ -19,7 +19,7 @@
  * ----------------------------------------------------------------------------
 **/
 
-#include "Logger.h"
+#include "LlrfAmcLogger.h"
 
 LoggerLevel ILogger::globalLevel = LoggerLevel::Error;
 

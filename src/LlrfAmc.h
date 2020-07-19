@@ -34,7 +34,7 @@
 #include "DownConverter.h"
 #include "Gen1UpConverter.h"
 #include "Gen2UpConverter.h"
-#include "Logger.h"
+#include "LlrfAmcLogger.h"
 
 class ILlrfAmc;
 
