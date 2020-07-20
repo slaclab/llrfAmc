@@ -97,7 +97,7 @@ bool IGen1UpConverter::init()
     return success;
 }
 
-bool IGen1UpConverter::isInited()
+bool IGen1UpConverter::isLocked()
 {
     log->log(LoggerLevel::Debug, "Checking lock status:");
     log->log(LoggerLevel::Debug, "----------------------------------");

@@ -100,7 +100,7 @@ bool IDownConverter::init()
     return success;
 }
 
-bool IDownConverter::isInited()
+bool IDownConverter::isLocked()
 {
     log->log(LoggerLevel::Debug, "Checking lock status:");
     log->log(LoggerLevel::Debug, "----------------------------------");

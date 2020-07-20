@@ -94,7 +94,7 @@ int main(int argc, char **argv)
     bool success;
     if ( success =  amc->init() )
     {
-        success &= amc->isInited();
+        success &= amc->isLocked();
     }
     std::cout << std::endl;
 

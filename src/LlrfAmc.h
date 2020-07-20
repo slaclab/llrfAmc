@@ -52,13 +52,13 @@ public:
     bool init() const;
 
     // Check if the down converter card is initialized
-    bool isDownConvInited() const;
+    bool isDownConvLocked() const;
 
     // Check if the up converter card is initialized
-    bool isUpConvInited() const;
+    bool isUpConvLocked() const;
 
     // Check is both cards are initialized
-    bool isInited() const;
+    bool isLocked() const;
 
     // Get copies of the Down and Up converter objects
     DownConverter   getDownConv() const;

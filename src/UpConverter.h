@@ -47,8 +47,8 @@ public:
     // These methods are specific to Gen1 or Gen2 up converters
     // - Method to initialize the UpConverter card
     virtual bool init() = 0;
-    // - Method to check is the UpConverter card is initialized
-    virtual bool isInited() = 0;
+    // - Method to check is the UpConverter card is locked
+    virtual bool isLocked() = 0;
 
     // These methods are common to all up converters
     std::string getModuleName() const;

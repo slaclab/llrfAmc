@@ -98,7 +98,7 @@ int main(int argc, char **argv)
     bool success;
     if ( success =  llrf->init() )
     {
-        success &= llrf->isInited();
+        success &= llrf->isLocked();
     }
     std::cout << std::endl;
 

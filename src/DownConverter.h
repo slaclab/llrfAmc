@@ -53,7 +53,7 @@ public:
 
     bool init();
 
-    bool isInited();
+    bool isLocked();
 
 private:
     // CPSW object paths

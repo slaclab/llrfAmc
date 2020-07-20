@@ -51,8 +51,8 @@ public:
     // Method to initialize the UpConverter card
     virtual bool init();
 
-    // Method to check is the UpConverter card is initialized
-    virtual bool isInited();
+    // Method to check is the UpConverter card is locked
+    virtual bool isLocked();
 
 private:
     // Devices specific to Gen2 card

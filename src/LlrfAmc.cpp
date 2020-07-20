@@ -98,19 +98,19 @@ bool ILlrfAmc::init() const
     return success;
 }
 
-bool ILlrfAmc::isInited() const
+bool ILlrfAmc::isLocked() const
 {
-    return ( downConv->isInited() & upConv->isInited() );
+    return ( downConv->isLocked() & upConv->isLocked() );
 }
 
-bool ILlrfAmc::isDownConvInited() const
+bool ILlrfAmc::isDownConvLocked() const
 {
-    return downConv->isInited();
+    return downConv->isLocked();
 }
 
-bool ILlrfAmc::isUpConvInited() const
+bool ILlrfAmc::isUpConvLocked() const
 {
-    return upConv->isInited();
+    return upConv->isLocked();
 }
 
 DownConverter ILlrfAmc::getDownConv() const

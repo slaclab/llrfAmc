@@ -21,9 +21,9 @@ If the DownConverter or either of the UpConverter devices is not found, an `std:
 
 Once the `LlrfAmc` object is created, it provides several methods. Among then we have:
 - `void init()`: Call initialization sequence of both cards,
-- `bool isDownConvInited()`: Check if the down converter card is initialized,
-- `bool isUpConvInited()`: Check if the up converter card is initialized,
-- `bool bool isInited()`: Check is both cards are initialized
+- `bool isDownConvLocked()`: Check if the down converter card is locked,
+- `bool isUpConvLocked()`: Check if the up converter card is locked,
+- `bool bool isLocked()`: Check is both cards are locked
 
 For a complete list refer to the [LlrfAmc.h](src/LlrfAmc.h) header file.
 
