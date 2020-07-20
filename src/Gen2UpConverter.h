@@ -48,9 +48,11 @@ public:
     // Module name
     static const std::string ModuleName;
 
-    bool init();
+    // Method to initialize the UpConverter card
+    virtual bool init();
 
-    bool isInited();
+    // Method to check is the UpConverter card is initialized
+    virtual bool isInited();
 
 private:
     // Devices specific to Gen2 card
