@@ -54,6 +54,8 @@ public:
     // Method to check is the UpConverter card is locked
     virtual bool isLocked();
 
+    virtual void loop();
+
 private:
     // Devices specific to Gen2 card
     Dac38J84   dac;

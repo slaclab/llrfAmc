@@ -63,6 +63,7 @@ int main(int argc, char **argv)
     }
 
     IYamlSetIP setIP(ipAddr);
+    std::cout << "Loading yaml file." << std::endl;
     Path root = IPath::loadYamlFile( yamlDoc.c_str(), "NetIODev", NULL, &setIP );
 
     if ( defaultsDoc.empty() )
@@ -108,6 +109,9 @@ int main(int argc, char **argv)
 
     std::cout << "Initialization succeed!" << std::endl;
     std::cout << std::endl;
+
+    amc->loop();
+
 
     std::cout << "Reading demod values:" << std::endl;
     std::cout << "-----------------------" << std::endl;

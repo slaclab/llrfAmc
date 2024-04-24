@@ -117,6 +117,31 @@ bool IGen2UpConverter::init()
     return success;
 }
 
+void IGen2UpConverter::loop()
+{
+    // Change value and read registers again
+    int regIndex = 0 ;
+    uint regValue = 0 ;
+    while(1){
+        std::cout << "Alter register: " ;
+        std::cin >> std::dec >> regIndex;
+        std::cout << "New register value: " ;
+        std::cin >> std::hex >> regValue;
+        if (regIndex != 200)
+        {
+            std::cout << "Changing register " << regIndex << " to " << regValue << std::endl;
+            dac->alterReg(regIndex, regValue);
+        } else {
+            std::cout << "Clearing alarms" << std::endl;
+            dac->clearAlarms();
+        }
+        dac->printRegSpace();
+        dac->isLocked();
+
+
+    }
+}
+
 bool IGen2UpConverter::isLocked()
 {
     log->log(LoggerLevel::Debug, "Checking lock status:");

@@ -49,6 +49,8 @@ public:
     void clearAlarms();
 
     bool isLocked();
+    void alterReg(int, uint32_t);
+    void printRegSpace();
 
 private:
     static const std::string ModuleName;
@@ -73,6 +75,8 @@ private:
     ScalVal_RO  linkConfigErrReg;
     ScalVal_RO  frameAlignErrReg;
     ScalVal_RO  multiFrameAlignErrReg;
+    ScalVal_RO  SysRefAlarmsReg;
+    ScalVal_RO  Serdes0pllAlarmReg;
     std::size_t numLanes;
     Logger      log;
 };
