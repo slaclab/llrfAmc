@@ -60,6 +60,7 @@ private:
     Command     ncoSyncCmd;
     Command     initDacCmd;
     ScalVal     dacReg;
+    ScalVal_RO  laneEnableReg;
     ScalVal_RO  linkErrCntReg;
     ScalVal_RO  readFifoEmptyReg;
     ScalVal_RO  readFifoUnderflowReg;
@@ -73,7 +74,10 @@ private:
     ScalVal_RO  linkConfigErrReg;
     ScalVal_RO  frameAlignErrReg;
     ScalVal_RO  multiFrameAlignErrReg;
+    ScalVal_RO  SysRefAlarmsReg;
+    ScalVal_RO  Serdes0pllAlarmReg;
     std::size_t numLanes;
+    uint32_t    laneEnable;
     Logger      log;
 };
 
