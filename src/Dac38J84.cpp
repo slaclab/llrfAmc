@@ -36,6 +36,7 @@ IDac38J84::IDac38J84(Path p)
 :
     root                   ( p->findByName( ModuleName.c_str() ) ),
     enableTxReg            ( IScalVal::create( root->findByName("EnableTx") )  ),
+    laneEnableReg          ( IScalVal_RO::create( root->findByName("LaneEnable") ) ),
     clearAlarmsCmd         ( ICommand::create( root->findByName("ClearAlarms") ) ),
     ncoSyncCmd             ( ICommand::create( root->findByName("NcoSync") ) ),
     initDacCmd             ( ICommand::create( root->findByName("InitDac") ) ),
@@ -53,10 +54,25 @@ IDac38J84::IDac38J84(Path p)
     linkConfigErrReg       ( IScalVal_RO::create( root->findByName("LinkConfigErr") ) ),
     frameAlignErrReg       ( IScalVal_RO::create( root->findByName("FrameAlignErr") ) ),
     multiFrameAlignErrReg  ( IScalVal_RO::create( root->findByName("MultiFrameAlignErr") ) ),
+    Serdes0pllAlarmReg     ( IScalVal_RO::create( root->findByName("Serdes0pllAlarm") ) ),
+    Serdes1pllAlarmReg     ( IScalVal_RO::create( root->findByName("Serdes1pllAlarm") ) ),
+    SysRefAlarmsReg        ( IScalVal_RO::create( root->findByName("SysRefAlarms") ) ),
     numLanes               ( linkErrCntReg->getNelms() ),
     log                    ( ILogger::create(ModuleName.c_str()) )
 {
-    log->log(LoggerLevel::Debug, "Object created. Number of lanes = " + to_string(numLanes));
+
+    int lanes = 0;
+    laneEnableReg->getVal(&laneEnable);
+
+    /* Count enabled lanes */
+    for (int i = 0 ; i < 8 ; i++)
+    {
+        if ( ( ( laneEnable >> i) & 0x1 ) == 1 )
+            lanes += 1;
+    }
+
+    log->log(LoggerLevel::Debug, "Object created. Lanes enabled = " + to_string(lanes));
+
 }
 
 void IDac38J84::init()
@@ -135,12 +151,6 @@ void IDac38J84::init()
 
     dacReg->getVal(&u32, 1, &rng);
     u32 &= 0xFFE0;
-    u32 |= 0x1E;
-    dacReg->setVal(&u32, 1, &rng);
-    usleep(10000);
-
-    dacReg->getVal(&u32, 1, &rng);
-    u32 &= 0xFFE0;
     u32 |= 0x1F;
     dacReg->setVal(&u32, 1, &rng);
     usleep(10000);
@@ -179,6 +189,7 @@ bool IDac38J84::isLocked()
 {
     log->log(LoggerLevel::Debug, "Checking lock status:");
     log->log(LoggerLevel::Debug, "----------------------------------");
+    log->log(LoggerLevel::Debug, "Enable = " + to_string(laneEnable));
 
     bool success { true };
 
@@ -186,55 +197,72 @@ bool IDac38J84::isLocked()
 
     linkErrCntReg->getVal(vec.data(), vec.size());
     log->log(LoggerLevel::Debug, vec2str(linkErrCntReg->getName(), vec));
-    success &= allZeros(vec);
+    success &= (0 == ( vec2word(vec) & laneEnable ));
 
     readFifoEmptyReg->getVal(vec.data(), vec.size());
     log->log(LoggerLevel::Debug, vec2str(readFifoEmptyReg->getName(), vec));
-    success &= allZeros(vec);
+    success &= (0 == ( vec2word(vec) & laneEnable ));
 
     readFifoUnderflowReg->getVal(vec.data(), vec.size());
     log->log(LoggerLevel::Debug, vec2str(readFifoUnderflowReg->getName(), vec));
-    success &= allZeros(vec);
+    success &= (0 == ( vec2word(vec) & laneEnable ));
 
     readFifoFullReg->getVal(vec.data(), vec.size());
     log->log(LoggerLevel::Debug, vec2str(readFifoFullReg->getName(), vec));
-    success &= allZeros(vec);
+    success &= (0 == ( vec2word(vec) & laneEnable ));
 
     readFifoOverflowReg->getVal(vec.data(), vec.size());
     log->log(LoggerLevel::Debug, vec2str(readFifoOverflowReg->getName(), vec));
-    success &= allZeros(vec);
+    success &= (0 == ( vec2word(vec) & laneEnable ));
 
     dispErrReg->getVal(vec.data(), vec.size());
     log->log(LoggerLevel::Debug, vec2str(dispErrReg->getName(), vec));
-    success &= allZeros(vec);
+    success &= (0 == ( vec2word(vec) & laneEnable ));
 
     notitableErrReg->getVal(vec.data(), vec.size());
     log->log(LoggerLevel::Debug, vec2str(notitableErrReg->getName(), vec));
-    success &= allZeros(vec);
+    success &= (0 == ( vec2word(vec) & laneEnable ));
 
     codeSyncErrReg->getVal(vec.data(), vec.size());
     log->log(LoggerLevel::Debug, vec2str(codeSyncErrReg->getName(), vec));
-    success &= allZeros(vec);
+    success &= (0 == ( vec2word(vec) & laneEnable ));
 
     firstDataMatchErrReg->getVal(vec.data(), vec.size());
     log->log(LoggerLevel::Debug, vec2str(firstDataMatchErrReg->getName(), vec));
-    success &= allZeros(vec);
+    success &= (0 == ( vec2word(vec) & laneEnable ));
 
     elasticBuffOverflowReg->getVal(vec.data(), vec.size());
     log->log(LoggerLevel::Debug, vec2str(elasticBuffOverflowReg->getName(), vec));
-    success &= allZeros(vec);
+    success &= (0 == ( vec2word(vec) & laneEnable ));
 
     linkConfigErrReg->getVal(vec.data(), vec.size());
     log->log(LoggerLevel::Debug, vec2str(linkConfigErrReg->getName(), vec));
-    success &= allZeros(vec);
+    success &= (0 == ( vec2word(vec) & laneEnable ));
 
     frameAlignErrReg->getVal(vec.data(), vec.size());
     log->log(LoggerLevel::Debug, vec2str(frameAlignErrReg->getName(), vec));
-    success &= allZeros(vec);
+    success &= (0 == ( vec2word(vec) & laneEnable ));
 
     multiFrameAlignErrReg->getVal(vec.data(), vec.size());
     log->log(LoggerLevel::Debug, vec2str(multiFrameAlignErrReg->getName(), vec));
-    success &= allZeros(vec);
+    success &= (0 == ( vec2word(vec) & laneEnable ));
+
+    uint32_t val;
+
+    /* Serdes0 PLL lanes 0 to 3 */
+    Serdes0pllAlarmReg->getVal(&val);
+    log->log(LoggerLevel::Debug, "Serdes0pllAlarm = " + to_string(val));
+    success &= (val == 0 | ( 0 == (laneEnable & 0xf)));
+
+    /* Serdes0 PLL lanes 4 to 7 */
+    Serdes1pllAlarmReg->getVal(&val);
+    log->log(LoggerLevel::Debug, "Serdes1pllAlarm = " + to_string(val));
+    success &= (val == 0 | ( 0 == (laneEnable & 0xf0)));
+
+    SysRefAlarmsReg->getVal(&val);
+    log->log(LoggerLevel::Debug, "SysRefAlarm = " + to_string(val));
+    success &= (val == 0);
+
 
     if ( success )
          log->log(LoggerLevel::Debug, "It is locked!");
@@ -243,8 +271,6 @@ bool IDac38J84::isLocked()
 
     log->log(LoggerLevel::Debug, "----------------------------------");
 
-    // These checks fail at the moment, so let's always return 'true' for now
-    //return success;
-    return true;
+    return success;
 }
 
