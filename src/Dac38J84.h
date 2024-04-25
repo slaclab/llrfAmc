@@ -76,6 +76,7 @@ private:
     ScalVal_RO  multiFrameAlignErrReg;
     ScalVal_RO  SysRefAlarmsReg;
     ScalVal_RO  Serdes0pllAlarmReg;
+    ScalVal_RO  Serdes1pllAlarmReg;
     std::size_t numLanes;
     uint32_t    laneEnable;
     Logger      log;

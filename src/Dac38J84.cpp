@@ -55,15 +55,23 @@ IDac38J84::IDac38J84(Path p)
     frameAlignErrReg       ( IScalVal_RO::create( root->findByName("FrameAlignErr") ) ),
     multiFrameAlignErrReg  ( IScalVal_RO::create( root->findByName("MultiFrameAlignErr") ) ),
     Serdes0pllAlarmReg     ( IScalVal_RO::create( root->findByName("Serdes0pllAlarm") ) ),
+    Serdes1pllAlarmReg     ( IScalVal_RO::create( root->findByName("Serdes1pllAlarm") ) ),
     SysRefAlarmsReg        ( IScalVal_RO::create( root->findByName("SysRefAlarms") ) ),
     numLanes               ( linkErrCntReg->getNelms() ),
     log                    ( ILogger::create(ModuleName.c_str()) )
 {
 
-    log->log(LoggerLevel::Debug, "Object created. Number of lanes = " + to_string(numLanes));
-
+    int lanes = 0;
     laneEnableReg->getVal(&laneEnable);
-    log->log(LoggerLevel::Debug, "laneEnable = " + to_string(laneEnable));
+
+    /* Count enabled lanes */
+    for (int i = 0 ; i < 8 ; i++)
+    {
+        if ( ( ( laneEnable >> i) & 0x1 ) == 1 )
+            lanes += 1;
+    }
+
+    log->log(LoggerLevel::Debug, "Object created. Lanes enabled = " + to_string(lanes));
 
 }
 
@@ -181,6 +189,7 @@ bool IDac38J84::isLocked()
 {
     log->log(LoggerLevel::Debug, "Checking lock status:");
     log->log(LoggerLevel::Debug, "----------------------------------");
+    log->log(LoggerLevel::Debug, "Enable = " + to_string(laneEnable));
 
     bool success { true };
 
@@ -239,12 +248,19 @@ bool IDac38J84::isLocked()
     success &= (0 == ( vec2word(vec) & laneEnable ));
 
     uint32_t val;
+
+    /* Serdes0 PLL lanes 0 to 3 */
     Serdes0pllAlarmReg->getVal(&val);
-    log->log(LoggerLevel::Debug, "Serdes0pllAlarm =" + to_string(val));
-    success &= (val == 0);
+    log->log(LoggerLevel::Debug, "Serdes0pllAlarm = " + to_string(val));
+    success &= (val == 0 | ( 0 == (laneEnable & 0xf)));
+
+    /* Serdes0 PLL lanes 4 to 7 */
+    Serdes1pllAlarmReg->getVal(&val);
+    log->log(LoggerLevel::Debug, "Serdes1pllAlarm = " + to_string(val));
+    success &= (val == 0 | ( 0 == (laneEnable & 0xf0)));
 
     SysRefAlarmsReg->getVal(&val);
-    log->log(LoggerLevel::Debug, "SysRefAlarm =" + to_string(val));
+    log->log(LoggerLevel::Debug, "SysRefAlarm = " + to_string(val));
     success &= (val == 0);
 
 
