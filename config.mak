@@ -14,7 +14,7 @@ BR_ARCHES += buildroot-2019.08
 ########################
 ### Package versions ###
 ########################
-CPSW_VERSION     = R4.4.1
+CPSW_VERSION     = R4.5.2
 BOOST_VERSION    = 1.64.0
 YAML_CPP_VERSION = yaml-cpp-0.5.3_boost-1.64.0
 
