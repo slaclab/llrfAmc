@@ -1,3 +1,4 @@
+include src/arch-detect.mak
 -include config.mak
 
 SRCDIR = src
