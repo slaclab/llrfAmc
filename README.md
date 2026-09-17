@@ -32,3 +32,31 @@ For a complete list refer to the [LlrfAmc.h](src/LlrfAmc.h) header file.
 ### Note about the initialization method
 
 The initialization sequence executed by the `init()` method requires that the defaults YAML configuration is already loaded when the method is called. You can take a look at the [llrf.cpp](src/test/llrf.cpp) test application as an example.
+
+## Installation Instructions
+
+### CMake
+
+To build with the CMake build system, use the standard `cmake-configure.sh` script provided with CPSW:
+```
+$PACKAGE_SITE_TOP/cpsw/framework/R4.7.0/cmake/cmake-configure-pkg.sh -p $PACKAGE_SITE_TOP/cpsw/framework/R4.7.0 -b
+```
+
+Where `-p` defines the location of CPSW itself, `-b` tells the script to run the build instead of just configuring.
+Use `cmake-configure-pkg.sh --help` to see the rest of the options and usage examples.
+
+Advanced users can configure with `cmake` directly, but you'll need to supply a CMake toolchain file for the cross targets.
+
+### Make
+
+Run `make` and `make install` to build for all available targets. The CPSW path and version are hardcoded in src/makefile.
+
+## Copyright Notice:
+
+COPYRIGHT © SLAC National Accelerator Laboratory. All rights reserved. 
+This work is supported [in part] by the U.S. Department of Energy, Office of Basic Energy Sciences under contract DE-AC02-76SF00515.
+
+## Usage Restrictions:
+
+Neither the name of the Leland Stanford Junior University, SLAC National Accelerator Laboratory, U.S. Department of Energy 
+nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
