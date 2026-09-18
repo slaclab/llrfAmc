@@ -23,10 +23,9 @@
 **/
 
 #include <iostream>
-#include <boost/shared_ptr.hpp>
-#include <boost/make_shared.hpp>
 #include <yaml-cpp/yaml.h>
 #include <cpsw_api_user.h>
+#include <cpsw_shared_ptr.h>
 
 #include "CpswTopPaths.h"
 #include "JesdRx.h"
@@ -35,7 +34,7 @@
 
 class IDownConverter;
 
-typedef boost::shared_ptr<IDownConverter> DownConverter;
+typedef cpsw::shared_ptr<IDownConverter> DownConverter;
 
 class IDownConverter
 {

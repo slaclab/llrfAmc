@@ -23,10 +23,9 @@
 **/
 
 #include <iostream>
-#include <boost/shared_ptr.hpp>
-#include <boost/make_shared.hpp>
 #include <yaml-cpp/yaml.h>
 #include <cpsw_api_user.h>
+#include <cpsw_shared_ptr.h>
 
 #include "CpswTopPaths.h"
 #include "UpConverter.h"
@@ -35,7 +34,7 @@
 
 class IGen2UpConverter;
 
-typedef boost::shared_ptr<IGen2UpConverter>  Gen2UpConverter;
+typedef cpsw::shared_ptr<IGen2UpConverter>  Gen2UpConverter;
 
 class IGen2UpConverter : public IUpConverter
 {

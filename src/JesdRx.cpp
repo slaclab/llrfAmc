@@ -29,7 +29,7 @@ JesdRx IJesdRx::create(Path p)
     if(!p)
         throw std::runtime_error(ModuleName + " : The root Path is empty");
 
-    return boost::make_shared<IJesdRx>(p);
+    return cpsw::make_shared<IJesdRx>(p);
 }
 
 IJesdRx::IJesdRx(Path p)

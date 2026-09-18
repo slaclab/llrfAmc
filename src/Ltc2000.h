@@ -24,16 +24,15 @@
 
 #include <string>
 #include <unistd.h>
-#include <boost/shared_ptr.hpp>
-#include <boost/make_shared.hpp>
 #include <cpsw_api_user.h>
+#include <cpsw_shared_ptr.h>
 
 #include "helpers.h"
 #include "LlrfAmcLogger.h"
 
 class ILtc2000;
 
-typedef boost::shared_ptr<ILtc2000> Ltc2000;
+typedef cpsw::shared_ptr<ILtc2000> Ltc2000;
 
 class ILtc2000
 {

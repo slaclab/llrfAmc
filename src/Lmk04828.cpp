@@ -28,7 +28,7 @@ Lmk04828 ILmk04828::create(Path p)
     if(!p)
         throw std::runtime_error(ModuleName + " : The root Path is empty");
 
-    return boost::make_shared<ILmk04828>(p);
+    return cpsw::make_shared<ILmk04828>(p);
 }
 
 ILmk04828::ILmk04828(Path p)

@@ -25,12 +25,11 @@
 #include <iostream>
 #include <string>
 #include <stdexcept>
-#include <boost/shared_ptr.hpp>
-#include <boost/make_shared.hpp>
+#include <cpsw_shared_ptr.h>
 
 class ILogger;
 
-typedef boost::shared_ptr<ILogger> Logger;
+typedef cpsw::shared_ptr<ILogger> Logger;
 
 // Logger level values
 enum class LoggerLevel { Debug, Warning, Error, None };
