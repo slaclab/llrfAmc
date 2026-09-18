@@ -25,10 +25,9 @@
 **/
 
 #include <iostream>
-#include <boost/shared_ptr.hpp>
-#include <boost/make_shared.hpp>
 #include <yaml-cpp/yaml.h>
 #include <cpsw_api_user.h>
+#include <cpsw_shared_ptr.h>
 
 #include "UpConverter.h"
 #include "DownConverter.h"
@@ -38,7 +37,7 @@
 
 class ILlrfAmc;
 
-typedef boost::shared_ptr<ILlrfAmc> LlrfAmc;
+typedef cpsw::shared_ptr<ILlrfAmc> LlrfAmc;
 
 class ILlrfAmc
 {

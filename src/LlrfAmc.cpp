@@ -31,7 +31,7 @@ LlrfAmc ILlrfAmc::create(Path p)
     if(!p)
         throw std::runtime_error(ModuleName + " : The root Path is empty");
 
-    return boost::make_shared<ILlrfAmc>(p);
+    return cpsw::make_shared<ILlrfAmc>(p);
 }
 
 ILlrfAmc::ILlrfAmc(Path p)

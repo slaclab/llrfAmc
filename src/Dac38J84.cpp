@@ -29,7 +29,7 @@ Dac38J84 IDac38J84::create(Path p)
     if(!p)
         throw std::runtime_error(ModuleName + " : The root Path is empty");
 
-    return boost::make_shared<IDac38J84>(p);
+    return cpsw::make_shared<IDac38J84>(p);
 }
 
 IDac38J84::IDac38J84(Path p)

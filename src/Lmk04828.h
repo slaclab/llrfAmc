@@ -24,16 +24,15 @@
 
 #include <string>
 #include <unistd.h>
-#include <boost/shared_ptr.hpp>
-#include <boost/make_shared.hpp>
 #include <cpsw_api_user.h>
+#include <cpsw_shared_ptr.h>
 
 #include "helpers.h"
 #include "LlrfAmcLogger.h"
 
 class ILmk04828;
 
-typedef boost::shared_ptr<ILmk04828> Lmk04828;
+typedef cpsw::shared_ptr<ILmk04828> Lmk04828;
 
 class ILmk04828
 {

@@ -24,16 +24,15 @@
 
 #include <string>
 #include <unistd.h>
-#include <boost/shared_ptr.hpp>
-#include <boost/make_shared.hpp>
 #include <cpsw_api_user.h>
+#include <cpsw_shared_ptr.h>
 
 #include "helpers.h"
 #include "LlrfAmcLogger.h"
 
 class IDac38J84;
 
-typedef boost::shared_ptr<IDac38J84> Dac38J84;
+typedef cpsw::shared_ptr<IDac38J84> Dac38J84;
 
 class IDac38J84
 {
