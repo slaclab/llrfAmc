@@ -22,17 +22,16 @@
  * ----------------------------------------------------------------------------
 **/
 
-#include <boost/shared_ptr.hpp>
-#include <boost/make_shared.hpp>
 #include <algorithm>
 #include <cpsw_api_user.h>
+#include <cpsw_shared_ptr.h>
 
 #include "helpers.h"
 #include "LlrfAmcLogger.h"
 
 class IJesdRx;
 
-typedef boost::shared_ptr<IJesdRx> JesdRx;
+typedef cpsw::shared_ptr<IJesdRx> JesdRx;
 
 class IJesdRx
 {

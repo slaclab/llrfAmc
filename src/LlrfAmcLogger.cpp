@@ -28,7 +28,7 @@ Logger ILogger::create(const std::string& n)
     if(n.empty())
         throw std::runtime_error("Logger created without a name!");
 
-    return boost::make_shared<ILogger>(n);
+    return cpsw::make_shared<ILogger>(n);
 }
 
 ILogger::ILogger(const std::string& n)

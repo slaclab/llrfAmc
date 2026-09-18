@@ -29,7 +29,7 @@ DownConverter IDownConverter::create(Path p)
     if(!p)
         throw std::runtime_error(ModuleName + " : The root Path is empty");
 
-    return boost::make_shared<IDownConverter>(p);
+    return cpsw::make_shared<IDownConverter>(p);
 }
 
 IDownConverter::IDownConverter(Path p)

@@ -28,7 +28,7 @@ Ltc2000 ILtc2000::create(Path p)
     if(!p)
         throw std::runtime_error(ModuleName + " : The root Path is empty");
 
-    return boost::make_shared<ILtc2000>(p);
+    return cpsw::make_shared<ILtc2000>(p);
 }
 
 ILtc2000::ILtc2000(Path p)

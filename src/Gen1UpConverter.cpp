@@ -29,7 +29,7 @@ Gen1UpConverter IGen1UpConverter::create(Path p)
     if(!p)
         throw std::runtime_error(ModuleName + " : The root Path is empty");
 
-    return boost::make_shared<IGen1UpConverter>(p);
+    return cpsw::make_shared<IGen1UpConverter>(p);
 }
 
 IGen1UpConverter::IGen1UpConverter(Path p)
