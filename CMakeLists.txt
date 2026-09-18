@@ -28,4 +28,10 @@ if (WITH_TIRPC)
     find_package(TIRPC REQUIRED)
 endif()
 
+# Required for cpsw::shared_ptr
+if (WITH_BOOST)
+    find_package(Boost REQUIRED)
+    message(STATUS "Boost_INCLUDE_DIRS=${Boost_INCLUDE_DIRS}")
+endif()
+
 add_subdirectory(src)
