@@ -79,9 +79,9 @@ add_executable(
     test/saveConfig.cpp
 )
 
-target_link_libraries(llrfAmc_check_dac PRIVATE llrfAmc-static cpsw.a yaml-cpp.a ${TIRPC_LIBRARIES})
-target_link_libraries(llrf PRIVATE llrfAmc-static cpsw.a yaml-cpp.a ${TIRPC_LIBRARIES})
-target_link_libraries(llrfAmc_saveConfig PRIVATE llrfAmc-static cpsw.a yaml-cpp.a ${TIRPC_LIBRARIES})
+target_link_libraries(llrfAmc_check_dac PRIVATE llrfAmc-static cpsw.a yaml-cpp.a ${TIRPC_LIBRARIES} pthread dl rt)
+target_link_libraries(llrf PRIVATE llrfAmc-static cpsw.a yaml-cpp.a ${TIRPC_LIBRARIES} pthread dl rt)
+target_link_libraries(llrfAmc_saveConfig PRIVATE llrfAmc-static cpsw.a yaml-cpp.a ${TIRPC_LIBRARIES} pthread dl rt)
 
 install(TARGETS llrfAmc_check_dac llrfAmc_saveConfig llrf)
 
