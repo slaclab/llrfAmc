@@ -79,7 +79,7 @@ void IDac38J84::init()
 {
     log->log(LoggerLevel::Debug, "Initializing...");
 
-    enableTxReg->setVal(0ul);
+    enableTxReg->setVal(static_cast<uint64_t>(0));
     usleep(10000);
 
     clearAlarmsCmd->execute();
